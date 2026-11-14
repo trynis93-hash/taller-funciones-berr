@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <title>Regla de Tres · Calculadora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <span cl ass="eyebrow">SENA · Competencia 240201528 · RAP 02</span>
+        <h1>Regla de tres</h1>
+        <p class="sub">
+          Identifica si dos magnitudes suben juntas (directa), suben al
+          contrario (inversa), o si trabajas con un porcentaje — y mira el
+          procedimiento completo, no solo el resultado.
+        </p>
+      </header>
+
+      <div class="banner" id="banner">
+        <span class="banner-tag" id="banner-tag">T1 · Ej 1</span>
+        <div class="banner-body"><p id="banner-text">Cargando…</p></div>
+        <button
+          class="banner-close"
+          id="banner-close"
+          aria-label="Cerrar"
+          title="Cerrar"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="tabs" id="calculator" role="tablist">
+        <button class="tab" role="tab" data-tab="directa" id="tabbtn-directa">
+          Directa
+        </button>
+        <button class="tab" role="tab" data-tab="inversa" id="tabbtn-inversa">
+          Inversa
+        </button>
+        <button
+          class="tab"
+          role="tab"
+          data-tab="porcentaje"
+          id="tabbtn-porcentaje"
+        >
+          Porcentaje
+        </button>
+      </div>
+
+      <div class="calculators">
+        <!-- DIRECTA -->
+        <section class="panel" id="panel-directa" role="tabpanel">
+          <div class="relation">
+            <div class="relation-arrows direct">
+              <span>↑</span><span>↑</span>
+            </div>
+            <p class="relation-copy">
+              Directa: cuando <strong id="rel1-directa">Horas</strong> sube,
+              <strong id="rel2-directa">Flores</strong> también sube (en la
+              misma proporción).
+            </p>
+          </div>
+
+          <div class="prop-table">
+            <div class="pt-cell pt-head"></div>
+            <div class="pt-cell pt-head">
+              <input class="pt-head-input" id="d-h1" value="Horas" />
+            </div>
+            <div class="pt-cell pt-head">
+              <input class="pt-head-input" id="d-h2" value="Flores" />
+            </div>
+
+            <div class="pt-cell pt-row-label">Caso conocido</div>
+            <div class="pt-cell">
+              <input type="number" inputmode="decimal" id="d-a" value="3" />
+            </div>
+            <div class="pt-cell">
+              <input type="number" inputmode="decimal" id="d-b" value="15" />
+            </div>
+
+            <div class="pt-cell pt-row-label">Caso nuevo</div>
+            <div class="pt-cell">
+              <input type="number" inputmode="decimal" id="d-c" value="8" />
+            </div>
+            <div class="pt-cell">
+              <input class="pt-result" id="d-x" value="—" readonly />
+            </div>
+          </div>
+          <p class="pt-hint">
+            x = (columna 2 × caso nuevo) ÷ caso conocido de columna 1
+          </p>
+
+          <div class="result">
+            <p class="label">Resultado</p>
+            <p class="value" id="d-result">—</p>
+          </div>
+          <ol class="steps" id="d-steps"></ol>
+        </section>
+
+        <!-- INVERSA -->
+        <section
+          class="panel inverse"
+          id="panel-inversa"
+          role="tabpanel"
+          hidden
+        >
+          <div class="relation">
+            <div class="relation-arrows inverse">
+              <span>↑</span><span>↑</span>
+            </div>
+            <p class="relation-copy">
+              Inversa: cuando <strong id="rel1-inversa">Grifos</strong> sube,
+              <strong id="rel2-inversa">Horas</strong> baja (una compensa a la
+              otra).
+            </p>
+          </div>
+
+          <div class="prop-table">
+            <div class="pt-cell pt-head"></div>
+            <div class="pt-cell pt-head">
+              <input class="pt-head-input" id="i-h1" value="Grifos" />
+            </div>
+            <div class="pt-cell pt-head">
+              <input class="pt-head-input" id="i-h2" value="Horas" />
+            </div>
+
+            <div class="pt-cell pt-row-label">Caso conocido</div>
+            <div class="pt-cell">
+              <input type="number" inputmode="decimal" id="i-a" value="3" />
+            </div>
+            <div class="pt-cell">
+              <input type="number" inputmode="decimal" id="i-b" value="6" />
+            </div>
+
+            <div class="pt-cell pt-row-label">Caso nuevo</div>
+            <div class="pt-cell">
+              <input type="number" inputmode="decimal" id="i-c" value="1" />
+            </div>
+            <div class="pt-cell">
+              <input class="pt-result" id="i-x" value="—" readonly />
+            </div>
+          </div>
+          <p class="pt-hint">
+            x = (caso conocido de columna 1 × columna 2) ÷ caso nuevo
+          </p>
+
+          <div class="result">
+            <p class="label">Resultado</p>
+            <p class="value" id="i-result">—</p>
+          </div>
+          <ol class="steps" id="i-steps"></ol>
+        </section>
+
+        <!-- PORCENTAJE -->
+        <section
+          class="panel porcentaje"
+          id="panel-porcentaje"
+          role="tabpanel"
+          hidden
+        >
+          <p class="percent-intro">Elige según lo que ya sabes:</p>
+          <div class="percent-modes" id="percent-modes">
+            <button class="pmode" data-pmode="de" id="pmodebtn-de">
+              <span class="pmode-title">% de un total</span>
+              <span class="pmode-example">Ej: ¿cuánto es el 35% de 120?</span>
+            </button>
+            <button class="pmode" data-pmode="que" id="pmodebtn-que">
+              <span class="pmode-title">¿Qué % representa?</span>
+              <span class="pmode-example">Ej: 12 de 60, ¿qué % es?</span>
+            </button>
+            <button class="pmode" data-pmode="total" id="pmodebtn-total">
+              <span class="pmode-title">Hallar el total</span>
+              <span class="pmode-example"
+                >Ej: si el 15% es 24, ¿cuál es el 100%?</span
+              >
+            </button>
+            <button class="pmode" data-pmode="var" id="pmodebtn-var">
+              <span class="pmode-title">Aumento o descuento</span>
+              <span class="pmode-example">Ej: sube o baja un valor un %</span>
+            </button>
+          </div>
+
+          <!-- de -->
+          <div class="percent-body" id="pbody-de">
+            <div class="field-row">
+              <div class="field">
+                <label for="p-de-p">Porcentaje (%)</label
+                ><input
+                  type="number"
+                  inputmode="decimal"
+                  id="p-de-p"
+                  value="35"
+                />
+              </div>
+              <div class="field">
+                <label for="p-de-n">Total</label
+                ><input
+                  type="number"
+                  inputmode="decimal"
+                  id="p-de-n"
+                  value="120"
+                />
+              </div>
+            </div>
+            <div class="percent-bar">
+              <div
+                class="percent-bar-fill"
+                id="p-de-bar"
+                style="width: 35%"
+              ></div>
+            </div>
+          </div>
+
+          <!-- que -->
+          <div class="percent-body hidden" id="pbody-que">
+            <div class="field-row">
+              <div class="field">
+                <label for="p-que-a">Parte</label
+                ><input
+                  type="number"
+                  inputmode="decimal"
+                  id="p-que-a"
+                  value="12"
+                />
+              </div>
+              <div class="field">
+                <label for="p-que-b">Total</label
+                ><input
+                  type="number"
+                  inputmode="decimal"
+                  id="p-que-b"
+                  value="60"
+                />
+              </div>
+            </div>
+            <div class="percent-bar">
+              <div
+                class="percent-bar-fill"
+                id="p-que-bar"
+                style="width: 20%"
+              ></div>
+            </div>
+          </div>
+
+          <!-- total -->
+          <div class="percent-body hidden" id="pbody-total">
+            <div class="field-row">
+              <div class="field">
+                <label for="p-total-a">Parte conocida</label
+                ><input
+                  type="number"
+                  inputmode="decimal"
+                  id="p-total-a"
+                  value="24"
+                />
+              </div>
+              <div class="field">
+                <label for="p-total-p">Esa parte es el (%)</label
+                ><input
+                  type="number"
+                  inputmode="decimal"
+                  id="p-total-p"
+                  value="15"
+                />
+              </div>
+            </div>
+            <div class="percent-bar" style="visibility: hidden">
+              <div class="percent-bar-fill" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- var -->
+          <div class="percent-body hidden" id="pbody-var">
+            <div class="field-row">
+              <div class="field">
+                <label for="p-var-n">Valor inicial</label
+                ><input
+                  type="number"
+                  inputmode="decimal"
+                  id="p-var-n"
+                  value="1000"
+                />
+              </div>
+              <div class="field">
+                <label for="p-var-p">Porcentaje (%)</label
+                ><input
+                  type="number"
+                  inputmode="decimal"
+                  id="p-var-p"
+                  value="35"
+                />
+              </div>
+            </div>
+            <div class="var-toggle">
+              <button class="vtoggle" data-dir="aumento" id="vt-aumento">
+                Aumento
+              </button>
+              <button class="vtoggle" data-dir="descuento" id="vt-descuento">
+                Descuento
+              </button>
+            </div>
+          </div>
+
+          <div class="result">
+            <p class="label">Resultado</p>
+            <p class="value" id="p-result">—</p>
+          </div>
+          <ol class="steps" id="p-steps"></ol>
+        </section>
+      </div>
+
+      <section class="bank">
+        <h2>Banco de ejercicios del taller</h2>
+        <p class="bank-sub">
+          Los 18 ejercicios de los dos talleres. Toca "Cargar" para verlos
+          resueltos paso a paso en la calculadora.
+        </p>
+        <div class="chips" id="chips">
+          <button class="chip" data-filter="todos" id="chipbtn-todos">
+            Todos · 18
+          </button>
+          <button class="chip" data-filter="directa" id="chipbtn-directa">
+            Directa · 8
+          </button>
+          <button class="chip" data-filter="inversa" id="chipbtn-inversa">
+            Inversa · 3
+          </button>
+          <button class="chip" data-filter="porcentaje" id="chipbtn-porcentaje">
+            Porcentaje · 7
+          </button>
+        </div>
+        <div class="card-grid" id="card-grid"></div>
+      </section>
+
+      <section class="rules">
+        <h2>¿Cómo saber cuál es cuál?</h2>
+        <div class="rules-grid">
+          <div class="rule-card g">
+            <h4>↑ ↑ Directa</h4>
+            <p>
+              Si una magnitud sube, la otra también sube (o si baja, la otra
+              baja igual). Ej: más horas trabajadas → más flores plantadas.
+            </p>
+          </div>
+          <div class="rule-card a">
+            <h4>↑ ↓ Inversa</h4>
+            <p>
+              Si una magnitud sube, la otra baja. Ej: más grifos abiertos →
+              menos tiempo para llenar la piscina.
+            </p>
+          </div>
+          <div class="rule-card t">
+            <h4>% Porcentaje</h4>
+            <p>
+              Relaciona una parte con un total de 100. Ej: 35 de cada 100 bolsos
+              son blancos → 35%.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="credit">
+        Herramienta de práctica basada en el Taller: Regla de Tres — SENA,
+        Pedagogía Matemáticas.
+      </footer>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
